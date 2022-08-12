@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../movies/moviesPage.dart';
+import '../movies/movie_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 2)).then((value) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-        return const MoviesPage();
+        return MoviesPage();
       }));
     });
     super.initState();

@@ -1,14 +1,26 @@
-import 'package:app_movies/src/domain/usecases/get_all_trending_movies/get_all_trending_movies_usecase_imp.dart';
-import 'package:app_movies/src/presentation/riverpod/movies/movies_notifier.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../data/datasources/remote/get_all_trending_movies_remote_datasource_imp.dart';
+import '../../../data/repositories/get_all_trending_movies_repository_imp.dart';
+import '../../../domain/entities/movie_entity.dart';
+import '../../../domain/usecases/get_all_trending_movies/get_all_trending_movies_usecase_imp.dart';
+import 'movies_notifier.dart';
+
 final dioProvider = Provider((ref) => Dio());
 
-final moviesUsecaseProvider = Provider((ref) {
-  return GetAllTrendingMoviesUsecaseImp(_repository);
+final moviesDatasourceProvider = Provider((ref) {
+  return GetAllTrendingMoviesRemoteDatasourceImp(ref.watch(dioProvider));
 });
 
-final MoviesNotifierProvider = StateNotifierProvider((ref) {
+final moviesRepositoryProvider = Provider((ref) {
+  return GetAllTrendingMoviesRepositoryImp(ref.watch(moviesDatasourceProvider));
+});
+
+final moviesUsecaseProvider = Provider((ref) {
+  return GetAllTrendingMoviesUsecaseImp(ref.watch(moviesRepositoryProvider));
+});
+
+final moviesNotifierProvider = StateNotifierProvider<MoviesNotifier, List<MovieEntity>>((ref) {
   return MoviesNotifier(ref.watch(moviesUsecaseProvider));
 });
