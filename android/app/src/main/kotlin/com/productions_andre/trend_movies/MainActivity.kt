@@ -1,4 +1,4 @@
-package com.example.app_movies
+package com.productions_andre.trend_movies
 
 import io.flutter.embedding.android.FlutterActivity
 

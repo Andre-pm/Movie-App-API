@@ -32,27 +32,21 @@ class BodyMovie extends StatelessWidget {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
+              children: const [
+                Text(
                   'Trending',
                   style: TextStyle(
                     fontSize: 45,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 10),
-                const Text(
+                SizedBox(height: 10),
+                Text(
                   'The daily and weekly top movies',
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                   ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  width: 300,
-                  height: 20,
-                  color: Colors.white60,
                 ),
               ],
             ),
